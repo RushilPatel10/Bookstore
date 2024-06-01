@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NovelStore</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #e3f2fd;
+    }
+
+    header {
+      background-color: #1e88e5;
+      padding: 20px 0;
+      color: #ffffff;
+    }
+
+    header .nav-link {
+      color: #ffffff;
+      font-size: 16px;
+    }
+
+    header .nav-link.active {
+      color: #ffeb3b;
+    }
+
+    header .nav-link:hover {
+      color: #ffca28;
+    }
+
+    .search-section {
+      background: linear-gradient(to right, #81d4fa, #4fc3f7);
+      padding: 60px 0;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .search-section h1 {
+      margin-bottom: 30px;
+    }
+
+    .search-section .form-control {
+      width: 50%;
+      max-width: 600px;
+    }
+
+    .btn-primary {
+      background-color: #26a69a;
+      border-color: #26a69a;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #00796b;
+      border-color: #00796b;
+      color: white;
+    }
+
+    .book-list .card {
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+      margin-bottom: 30px;
+    }
+
+    .book-list .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .book-list .card-img-container {
+      overflow: hidden;
+      border-radius: 10px 10px 0 0;
+      position: relative;
+      padding-top: 75%;
+    }
+
+    .book-list .card-img-top {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .book-list .card-img-container:hover .card-img-top {
+      transform: scale(1.1);
+    }
+
+    .book-list .card-body {
+      text-align: center;
+    }
+
+    .book-list .btn {
+      width: 100%;
+    }
+
+    span {
+      font-weight: 800;
+    }
+
+    footer {
+      background: linear-gradient(to right, #81d4fa, #4fc3f7);
+      padding: 20px 0;
+      text-align: center;
+      color: #ffffff;
+      border-radius: 50px 50px 0 0;
+    }
+
+    footer address {
+      margin: 0;
+    }
+  </style>
+
+  <body>
+    <!-- Header Section -->
+    <header class="py-3">
+      <div class="container d-flex justify-content-between align-items-center">
+        <div class="logo d-flex align-items-center">
+          <!-- <img src="logo.png" alt="Logo" class="img-fluid" style="max-height: 50px;"> -->
+          <span class="ml-2 h4 mb-0">NovelStore</span>
+        </div>
+        <nav>
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Shop</a>
+            </li>
+          </ul>
+        </nav>
+        <div class="search-icon">
+          <a href="#"></a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Search Section -->
+    <section class="search-section text-center py-5">
+      <div class="container">
+        <h1 class="mb-4">
+          Find the book <br /><strong>you've been looking for</strong>
+        </h1>
+        <form class="form-inline justify-content-center">
+          <input
+            class="form-control form-control-lg mr-2"
+            type="search"
+            placeholder="Search by book title"
+            aria-label="Search"
+          />
+          <button class="btn btn-primary btn-lg" type="submit">Search</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Book List Section -->
+    <section class="book-list py-5">
+      <div class="container">
+        <center>
+          <a href="/add" class="btn btn-primary w-50 mb-5">Add Books Data</a>
+        </center>
+        <div class="row">
+          <% users.map((val)=>{ %>
+          <!-- Book Item -->
+          <div class="col-md-6 col-lg-3 mb-4">
+            <div class="card h-100">
+              <div class="card-img-container">
+                <img
+                  src="<%=val.image %>"
+                  class="card-img-top"
+                  alt="Book Image"
+                />
+              </div>
+              <div class="card-body d-flex flex-column">
+                <h2 class="card-title"><%=val.name%></h2>
+                <p class="card-title"><span>Price:</span> <%=val.price%></p>
+                <p class="card-title"><span>Type:</span> <%=val.Genre%></p>
+                <div class="mt-auto">
+                  <a href="/deleteData?id=<%=val._id%>" class="btn btn-primary btn-block mt-2">Delete</a>
+                  <a href="/editData?id=<%=val._id%>" class="btn btn-primary btn-block mt-2">Edit</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="py-3 text-center">
+      <div class="container">
+        <address>
+          Sapna Book House Pvt. Ltd. City
+        </address>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

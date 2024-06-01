@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookstore</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f4f7;
+            font-family: Arial, sans-serif;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-header {
+            background-color: #00796b;
+            color: white;
+            text-align: center;
+        }
+        .card-body {
+            background-color: #ffffff;
+        }
+        .form-group label {
+            color: #00796b;
+        }
+        .form-control {
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+        }
+        .card-footer {
+            background-color: #e0f2f1;
+        }
+        .btn-primary {
+            background-color: #00796b;
+            border: none;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #004d40;
+        }
+    </style>
+</head>
+<body>
+    <form action="/editData/<%=data._id%>" method="post" class="container mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h2>Add Book</h2>
+            </div>
+            <div class="card-body">
+                <div class="form-group row">
+                    <label for="image" class="col-sm-2 col-form-label">Image</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="image" name="image" value="<%=data.image%>">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" name="name" value="<%=data.name%>">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="price" class="col-sm-2 col-form-label">Price</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="price" name="price" value="<%=data.price%>">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="genre" class="col-sm-2 col-form-label">Genre</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="genre" name="Genre">
+                            <option value="">--Select Genre--</option>
+                            <option value="fiction" <% if(data.genre === 'fiction') { %>selected<% } %>>Fiction</option>
+                            <option value="nonfiction" <% if(data.genre === 'nonfiction') { %>selected<% } %>>Non-Fiction</option>
+                            <option value="fantasy" <% if(data.genre === 'fantasy') { %>selected<% } %>>Fantasy</option>
+                            <option value="mystery" <% if(data.genre === 'mystery') { %>selected<% } %>>Mystery</option>
+                            <option value="romance" <% if(data.genre === 'romance') { %>selected<% } %>>Romance</option>
+                            <option value="thriller" <% if(data.genre === 'thriller') { %>selected<% } %>>Thriller</option>
+                            <option value="science" <% if(data.genre === 'science') { %>selected<% } %>>Science</option>
+                            <option value="biography" <% if(data.genre === 'biography') { %>selected<% } %>>Biography</option>
+                            <option value="selfhelp" <% if(data.genre === 'selfhelp') { %>selected<% } %>>Self-Help</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-right">
+                <button type="submit" class="btn btn-primary">Add Book</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
